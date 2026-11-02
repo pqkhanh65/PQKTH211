@@ -1,0 +1,36 @@
+@model IEnumerable<PQKTHQuanLyDSSV.Models.Learner>
+@{
+    int pageNum = ViewBag.pageNum ?? 1;
+    int currentPage = ViewBag.currentPage ?? 1;
+}
+<table class="table table-striped table-bordered">
+    <thead class="table-light">
+        <tr><th>Mã</th><th>Tên</th><th>Họ</th><th>Ngành</th><th>Ngày nhập học</th><th>Chức năng</th></tr>
+    </thead>
+    <tbody>
+    @if (!Model.Any())
+    {
+        <tr><td colspan="6" class="text-center">Không tìm thấy dữ liệu</td></tr>
+    }
+    else
+    {
+        @foreach (var s in Model)
+        {
+            <tr>
+                <td>@s.LearnerID</td><td>@s.FirstMidName</td><td>@s.LastName</td>
+                <td>@s.Major?.MajorName</td><td>@s.EnrollmentDate.ToString("dd/MM/yyyy")</td>
+                <td><a asp-action="Edit" asp-route-id="@s.LearnerID">Edit</a> | <a asp-action="Delete" asp-route-id="@s.LearnerID">Delete</a></td>
+            </tr>
+        }
+    }
+    </tbody>
+</table>
+@if (pageNum > 1)
+{
+    <nav><ul class="pagination">
+    @for (int i = 1; i <= pageNum; i++)
+    {
+        <li class="page-item @(i == currentPage ? "active" : "")" data-page="@i"><a href="#" class="page-link">@i</a></li>
+    }
+    </ul></nav>
+}

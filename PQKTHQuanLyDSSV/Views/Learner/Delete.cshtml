@@ -1,0 +1,20 @@
+@model PQKTHQuanLyDSSV.Models.Learner
+@{
+    ViewData["Title"] = "Xóa người học";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container mt-3">
+    <h2>Xóa người học</h2>
+    <p>Bạn có chắc chắn muốn xóa người học này?</p>
+    <dl class="row">
+        <dt class="col-sm-3">Mã</dt><dd class="col-sm-9">@Model.LearnerID</dd>
+        <dt class="col-sm-3">Tên</dt><dd class="col-sm-9">@Model.FirstMidName</dd>
+        <dt class="col-sm-3">Họ</dt><dd class="col-sm-9">@Model.LastName</dd>
+        <dt class="col-sm-3">Ngành</dt><dd class="col-sm-9">@Model.Major?.MajorName</dd>
+    </dl>
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="LearnerID" />
+        <button type="submit" class="btn btn-danger">Xóa</button>
+        <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+    </form>
+</div>

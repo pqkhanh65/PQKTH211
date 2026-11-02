@@ -1,0 +1,9 @@
+@model IEnumerable<PQKTHQuanLyDSSV.Models.Major>
+<ul class="nav nav-pills mb-3" id="majorMenu">
+    @foreach (var m in Model)
+    {
+        <li class="nav-item" id="@m.MajorID">
+            <a href="#" class="nav-link major-link">@m.MajorName</a>
+        </li>
+    }
+</ul>
